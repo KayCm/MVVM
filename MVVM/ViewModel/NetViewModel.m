@@ -22,7 +22,10 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        if ((int)responseObject[@"success"] == 1) {
+        NSLog(@"Re:%d",[responseObject[@"success"] intValue]);
+    
+        
+        if ([responseObject[@"success"] intValue] == 1) {
             
             Return([self ConvertToModel:responseObject[@"result"]]);
             

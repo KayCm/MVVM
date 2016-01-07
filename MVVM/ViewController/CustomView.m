@@ -13,6 +13,7 @@
 @interface CustomView ()
 
 @property(nonatomic,strong)UILabel *lbl;
+@property(nonatomic,strong)UILabel *ModelLbl;
 
 @end
 
@@ -55,6 +56,12 @@
         
         [self addSubview:_lbl];
         
+        _ModelLbl = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.height/2+50, frame.size.width, 50)];
+        
+        _ModelLbl.textAlignment = NSTextAlignmentCenter;
+        
+        [self addSubview:_ModelLbl];
+        
     }
     
     return self;
@@ -62,6 +69,8 @@
 
 -(void)clickDelegate
 {
+    _ModelLbl.text = @"Delegate";
+    _lbl.text = @"";
     if ([self.Delegate respondsToSelector:@selector(ViewDelegateClick)]) {
         
         [self.Delegate performSelector:@selector(ViewDelegateClick) withObject:nil];
@@ -71,11 +80,15 @@
 
 -(void)clickBlock
 {
+    _ModelLbl.text = @"Block";
+    _lbl.text = @"";
     if (self.BlockClick) self.BlockClick();
 }
 
 -(void)clickNoti
 {
+    _ModelLbl.text = @"Notification";
+    _lbl.text = @"";
     if (self.NotiClick) self.NotiClick();
 }
 

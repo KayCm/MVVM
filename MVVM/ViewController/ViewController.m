@@ -14,7 +14,7 @@
 
 #import "CustomView.h"
 
-#define Apiurl "http://api.k780.com:88/?app=weather.today&weaid=101210101&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json"
+#define Apiurl "http://api.k780.com:88/?app=weather.today&weaid=101210101&appkey=17173&sign=7f9e8d28cff1fa31bbad01b72163cd0c&format=json"
 
 @interface ViewController ()<NetViewModelDelegate,CustomViewDelegate>
 {
@@ -49,6 +49,7 @@
     cv.BlockClick = ^(){
         
         [weakNet NetViewModelWithBlock:^(id returnValue) {
+            
             NSLog(@"Block:%@",returnValue);
             
             WeatherModel *wm = (WeatherModel*)returnValue;
@@ -58,17 +59,14 @@
             NSLog(@"Name:%@",wm.citynm);
             
         } SetFailure:^(id FailureVaue) {
-            NSLog(@"Block:%@",FailureVaue);
+            NSLog(@"FailureVaue:%@",FailureVaue);
         } SetError:^(id ErrorValue) {
-            NSLog(@"Block:%@",ErrorValue);
+            NSLog(@"ErrorValue:%@",ErrorValue);
         } SetUrl:@Apiurl];
         
     };
     
-    
-    
-    
-    
+
     
 #pragma mark ======= Noti
     
