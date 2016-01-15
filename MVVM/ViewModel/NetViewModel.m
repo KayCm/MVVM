@@ -10,6 +10,8 @@
 #import "AFNetworking.h"
 #import "WeatherModel.h"
 
+#import "ArchiverCache.h"
+
 @implementation NetViewModel
 
 
@@ -93,6 +95,19 @@
     
     WeatherModel *model = [[WeatherModel alloc] initWithDictionary:Data];
     
+    ///转成模型,同时把IMG给下载了.....由于API里的ICON是GIF,为了省事,这里直接另找了一张图.(可用sdwebimage来处理gif)
+    NSString *imageURLStr = @"http://pic.58pic.com/58pic/15/48/73/04f58PIC37y_1024.png";
+    
+    NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:imageURLStr]];
+    
+    model.Logo = [UIImage imageWithData:imageData];
+    
+    
+    ArchiverCache *ar = [[ArchiverCache alloc] init];
+    
+    [ar EncoderDoWithModel:model];
+    
+   
     
     return model;
 }

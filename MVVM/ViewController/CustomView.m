@@ -14,6 +14,8 @@
 
 @property(nonatomic,strong)UILabel *lbl;
 @property(nonatomic,strong)UILabel *ModelLbl;
+@property(nonatomic,strong)UILabel *CacheLal;
+@property(nonatomic,strong)UIImageView *Logo;
 
 @end
 
@@ -25,6 +27,7 @@
     
     if (self = [super initWithFrame:frame]) {
         
+        self.backgroundColor = [UIColor whiteColor];
         
         UIStackView *usv = [[UIStackView alloc] initWithFrame:CGRectMake(0, frame.size.height-60, frame.size.width, 60)];
         
@@ -56,11 +59,31 @@
         
         [self addSubview:_lbl];
         
+        
+        _CacheLal = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.height/2-100, frame.size.width, 50)];
+        
+        _CacheLal.textAlignment = NSTextAlignmentCenter;
+        
+        [self addSubview:_CacheLal];
+        
         _ModelLbl = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.height/2+50, frame.size.width, 50)];
         
         _ModelLbl.textAlignment = NSTextAlignmentCenter;
         
         [self addSubview:_ModelLbl];
+        
+        
+        _Logo = [[UIImageView alloc] initWithFrame:CGRectMake(frame.size.width/2-50, frame.size.height/2-200, 100, 100)];
+        
+        [self addSubview:_Logo];
+        
+        
+        
+        _Logo.layer.shadowPath =  [[UIBezierPath bezierPathWithRect:_Logo.bounds] CGPath];
+        
+        
+        
+        
         
     }
     
@@ -96,6 +119,10 @@
 -(void)ViewInitWith:(WeatherModel*)Model
 {
     _lbl.text = [NSString stringWithFormat:@"%@,%@,%@",Model.citynm,Model.weather,Model.temperature_curr];
+    
+    _CacheLal.text = Model.days;
+    
+    _Logo.image = Model.Logo;
     
 }
 

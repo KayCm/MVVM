@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
+    <entity name="Temps" representedClassName="Temps" syncable="YES">
+        <attribute name="highTemp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lowTemp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="noTemp" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="weather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Weather" inverseName="temps" inverseEntity="Weather" syncable="YES"/>
+    </entity>
+    <entity name="Weather" representedClassName="Weather" syncable="YES">
+        <attribute name="cityName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="days" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="weather" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="temps" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Temps" inverseName="weather" inverseEntity="Temps" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Weather" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Temps" positionX="-54" positionY="18" width="128" height="105"/>
+    </elements>
+</model>

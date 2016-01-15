@@ -12,6 +12,9 @@
 
 @protocol NetViewModelDelegate < NSObject>
 
+
+@optional
+
 -(void)NetDelegateSuccessValue:(id)Value;
 -(void)NetDelegateFailureValue:(id)Value;
 

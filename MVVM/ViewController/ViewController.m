@@ -14,12 +14,25 @@
 
 #import "CustomView.h"
 
+#import "ArchiverCache.h"
+
+#import "MD5Encode.h"
+
+#import "KeyChainIO.h"
+
 #define Apiurl "http://api.k780.com:88/?app=weather.today&weaid=101210101&appkey=17173&sign=7f9e8d28cff1fa31bbad01b72163cd0c&format=json"
 
 @interface ViewController ()<NetViewModelDelegate,CustomViewDelegate>
 {
     NetViewModel *net;
     CustomView *cv;
+    
+    NSCache *Cache;
+    UIImage *cacheImg;
+    UIImage *DiskImg;
+    
+    UIImageView *cacheImgV;
+    UIImageView *DiskImgV;
 }
 @end
 
@@ -27,21 +40,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+ 
     // Do any additional setup after loading the view, typically from a nib.
     
     cv = [[CustomView alloc] initWithFrame:self.view.bounds];
     
     cv.Delegate = self;
     
-    
     [self.view addSubview:cv];
     
+    
+    //读取缓存...
+    ArchiverCache *ar = [[ArchiverCache alloc] init];
+    
+    WeatherModel *Wm = [ar UncoderDoWith];
 
+    [cv ViewInitWith:Wm];
+    
+    
     net = [[NetViewModel alloc] init];
     
-    
 #pragma mark ======= Block;
-    
     
     __weak typeof(cv) weakCv = cv;
     __weak typeof(net) weakNet = net;
@@ -78,7 +99,60 @@
         
     };
     
+
+    
 }
+
+
+-(UIImage *)getImageForCacheOrDiskOrNetWithKey:(NSString*)Key
+{
+    
+    //cache data
+    
+    NSCache *cache = [[NSCache alloc] init];
+    
+    NSData *CacheData =  [cache objectForKey:Key];
+    
+    if (CacheData != nil) {
+        
+        
+        return [UIImage imageWithData:CacheData];
+        
+        
+    }else{
+        
+        //Disk read
+        
+        NSArray *arr = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        
+        NSString *cachePath = [arr firstObject];
+        
+        NSString *filePath = [cachePath stringByAppendingPathComponent:Key];
+        
+        NSData *Diskdata = [[NSData alloc] initWithContentsOfFile:filePath];
+        
+        
+        if (Diskdata != nil) {
+            
+            return [UIImage imageWithData:Diskdata];
+            
+        }else{
+            
+            //internet request here;
+            
+            NSString *imageURLStr = @"http://pic.58pic.com/58pic/15/48/73/04f58PIC37y_1024.png";
+            
+            NSData *InternetData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:imageURLStr]];
+            
+            return [UIImage imageWithData:InternetData];
+            
+        }
+    }
+    
+}
+
+
+
 
 
 #pragma mark ======== NetViewModelDelegate 实现
@@ -120,6 +194,20 @@
     
     
 }
+
+
+-(NSString *)StringReverse:(NSString*)Str
+{
+    
+    
+    
+    return nil;
+    
+}
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

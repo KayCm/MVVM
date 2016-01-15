@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface WeatherModel : NSObject
+@interface WeatherModel : NSObject <NSCoding>
 
 @property(nonatomic,strong)NSString* cityid;
 @property(nonatomic,strong)NSString* citynm;
@@ -33,6 +34,7 @@
 @property(nonatomic,strong)NSString* windid;
 @property(nonatomic,strong)NSString* winp;
 @property(nonatomic,strong)NSString* winpid;
+@property(nonatomic,strong)UIImage * Logo;
 
 
 -(id)initWithDictionary:(NSDictionary*)dic;
