@@ -20,6 +20,12 @@
 
 #import "KeyChainIO.h"
 
+//#import "UIImageView+AFNetworking.h"
+//
+//#import "UIImageView+AFNetworking.h"
+
+#import "UIKit+AFNetworking.h"
+
 #define Apiurl "http://api.k780.com:88/?app=weather.today&weaid=101210101&appkey=17173&sign=7f9e8d28cff1fa31bbad01b72163cd0c&format=json"
 
 @interface ViewController ()<NetViewModelDelegate,CustomViewDelegate>
@@ -99,6 +105,19 @@
         
     };
     
+    
+    
+    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(9, 9, 100, 100)];
+    
+    iv.backgroundColor = [UIColor redColor];
+    
+    [self.view addSubview:iv];
+    
+    NSURL *url = [[NSURL alloc] initWithString:@"http://pic.58pic.com/58pic/15/48/73/04f58PIC37y_1024.png"];
+    
+    [iv setImageWithURL:url];
+    
+    
 
     
 }
@@ -148,6 +167,7 @@
             
         }
     }
+    
     
 }
 
