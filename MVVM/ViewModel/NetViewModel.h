@@ -31,4 +31,6 @@
 
 -(void)NetViewModelWithNotiWithUrl:(NSString*)url;
 
+-(id)NetViewModelWithCache;
+
 @end

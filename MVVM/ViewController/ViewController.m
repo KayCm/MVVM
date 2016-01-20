@@ -33,12 +33,6 @@
     NetViewModel *net;
     CustomView *cv;
     
-    NSCache *Cache;
-    UIImage *cacheImg;
-    UIImage *DiskImg;
-    
-    UIImageView *cacheImgV;
-    UIImageView *DiskImgV;
 }
 @end
 
@@ -56,17 +50,14 @@
     cv.Delegate = self;
     
     [self.view addSubview:cv];
-    
-    
-    //读取缓存...
-    ArchiverCache *ar = [[ArchiverCache alloc] init];
-    
-    WeatherModel *Wm = [ar UncoderDoWith];
 
-    [cv ViewInitWith:Wm];
-    
     
     net = [[NetViewModel alloc] init];
+   
+#pragma mark ======= Cache
+    WeatherModel *WM = [net NetViewModelWithCache];
+    
+    [cv ViewInitWith:WM];
     
 #pragma mark ======= Block;
     
@@ -104,20 +95,6 @@
          [weakNet NetViewModelWithNotiWithUrl:@Apiurl];
         
     };
-    
-    
-    
-    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(9, 9, 100, 100)];
-    
-    iv.backgroundColor = [UIColor redColor];
-    
-    [self.view addSubview:iv];
-    
-    NSURL *url = [[NSURL alloc] initWithString:@"http://pic.58pic.com/58pic/15/48/73/04f58PIC37y_1024.png"];
-    
-    [iv setImageWithURL:url];
-    
-    
 
     
 }
@@ -214,19 +191,6 @@
     
     
 }
-
-
--(NSString *)StringReverse:(NSString*)Str
-{
-    
-    
-    
-    return nil;
-    
-}
-
-
-
 
 
 - (void)didReceiveMemoryWarning {

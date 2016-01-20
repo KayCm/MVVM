@@ -88,6 +88,16 @@
     
 }
 
+-(id)NetViewModelWithCache
+{
+    //读取缓存...
+    ArchiverCache *ar = [[ArchiverCache alloc] init];
+    //需在相应的model实现 initWithCoder;
+    WeatherModel *Wm = [ar UncoderDoWith];
+    
+    return Wm;
+}
+
 
 
 -(id)ConvertToModel:(id)Data
@@ -105,6 +115,7 @@
     
     ArchiverCache *ar = [[ArchiverCache alloc] init];
     
+    //需在相应的model实现 encodeWithCoder;
     [ar EncoderDoWithModel:model];
     
    

@@ -43,7 +43,6 @@
     [Coder encodeObject:_weather forKey:@"Weather"];
     [Coder encodeObject:_temperature_curr forKey:@"NowTemp"];
     [Coder encodeObject:str forKey:@"days"];
-    
     [Coder encodeObject:UIImagePNGRepresentation(_Logo) forKey:@"img"];
     
 }
@@ -59,7 +58,6 @@
         self.weather = [Decoder decodeObjectForKey:@"Weather"];
         self.temperature_curr = [Decoder decodeObjectForKey:@"NowTemp"];
         self.days   =   [Decoder decodeObjectForKey:@"days"];
-        
         self.Logo = [UIImage imageWithData:[Decoder decodeObjectForKey:@"img"]];
         
         

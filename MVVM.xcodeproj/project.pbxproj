@@ -21,7 +21,6 @@
 		0CBCC1A91C3F91B30019142C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CBCC1A41C3F91B30019142C /* Assets.xcassets */; };
 		0CBCC1AA1C3F91B30019142C /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 0CBCC1A51C3F91B30019142C /* Base.lproj */; };
 		0CBCC1AC1C3F91B30019142C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBCC1A71C3F91B30019142C /* main.m */; };
-		0CBCC25E1C40AE6D0019142C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CBCC25D1C40AE6D0019142C /* Info.plist */; };
 		0CF3FCD21C45E56500CB3A9F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF3FCD11C45E56500CB3A9F /* Security.framework */; };
 		0CF3FCDC1C462EB700CB3A9F /* KeyChainIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF3FCDB1C462EB700CB3A9F /* KeyChainIO.m */; };
 		AD4CF5EE2CD45CAFC1DBE0ED /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DFD7076D24C9F1F2742587 /* libPods.a */; };
@@ -355,7 +354,6 @@
 			files = (
 				0CBCC1AA1C3F91B30019142C /* Base.lproj in Resources */,
 				0CBCC1A91C3F91B30019142C /* Assets.xcassets in Resources */,
-				0CBCC25E1C40AE6D0019142C /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
